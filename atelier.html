@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Atelier — Conway Travel Collective</title>
+  <meta name="description" content="Meet the minds behind Conway Travel Collective — a boutique team of luxury travel advisors who bring precision, passion, and personal connection to every commission." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Atelier-specific styles ─────────────────────────── */
+    .atelier-hero {
+      padding: calc(var(--space-24) + 80px) 0 var(--space-20);
+      background: var(--color-bg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .atelier-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(44,74,62,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .atelier-eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--forest-mid);
+      margin-bottom: var(--space-5);
+    }
+
+    .atelier-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin: 0 0 var(--space-6);
+    }
+
+    .atelier-hero-title em {
+      font-style: italic;
+      color: var(--forest-mid);
+    }
+
+    .atelier-hero-lead {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      max-width: 560px;
+      margin: 0 auto var(--space-10);
+    }
+
+    .atelier-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--forest-mid);
+      margin: 0 auto;
+      opacity: 0.5;
+    }
+
+    /* ── Team grid ──────────────────────────────────────── */
+    .atelier-section {
+      padding: var(--space-24) 0;
+      background: var(--color-bg);
+    }
+
+    .atelier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .team-card {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      overflow: visible;
+      transition: none;
+    }
+
+    .team-card:hover {
+      box-shadow: none;
+      transform: none;
+    }
+
+    .team-card-avatar {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-5);
+      overflow: hidden;
+    }
+
+    .team-card-avatar-initials {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      font-style: italic;
+      color: var(--forest-mid);
+      opacity: 0.55;
+      user-select: none;
+    }
+
+    .team-card-avatar-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 50% 30%, rgba(44,74,62,0.10) 0%, transparent 70%);
+    }
+
+    .team-card-body {
+      padding: 0;
+    }
+
+    .team-card-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--color-text);
+      margin: 0 0 var(--space-1);
+    }
+
+    .team-card-title {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest-mid);
+      margin: 0 0 var(--space-5);
+    }
+
+    .team-card-bio {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      line-height: 1.75;
+      color: var(--color-text-muted);
+      margin: 0 0 var(--space-6);
+    }
+
+    .team-card-specialties {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+
+    .specialty-tag {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--forest-mid);
+      background: var(--color-forest-pale);
+      border: 1px solid rgba(44,74,62,0.12);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .team-card-social {
+      display: flex;
+      gap: var(--space-3);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .team-card-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+    }
+
+    .team-card-social a:hover {
+      color: var(--forest);
+      border-color: var(--forest-mid);
+      background: var(--color-forest-pale);
+    }
+
+    /* ── Philosophy strip ───────────────────────────────── */
+    .atelier-philosophy {
+      padding: var(--space-20) 0;
+      background: var(--forest);
+      text-align: center;
+    }
+
+    .atelier-philosophy-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.5;
+      max-width: 720px;
+      margin: 0 auto var(--space-6);
+    }
+
+    .atelier-philosophy-attr {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── Join CTA ───────────────────────────────────────── */
+    .atelier-join {
+      padding: var(--space-24) 0;
+      background: var(--color-bg-alt, var(--cream-deep));
+      text-align: center;
+    }
+
+    .atelier-join-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--color-text);
+      margin: 0 0 var(--space-4);
+    }
+
+    .atelier-join-title em {
+      font-style: italic;
+      color: var(--forest-mid);
+    }
+
+    .atelier-join-body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: var(--color-text-muted);
+      max-width: 480px;
+      margin: 0 auto var(--space-8);
+    }
+
+    .atelier-join-actions {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .atelier-grid {
+        grid-template-columns: 1fr;
+      }
+      .team-card-avatar {
+        aspect-ratio: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== FLOATING NAV ==================== -->
+  <header class="header" id="header">
+    <nav class="nav-pill" id="navPill">
+      <a href="index.html" class="nav-logo" aria-label="Conway Travel Collective Home">
+        <img src="images/logo-icon-balloon.jpeg" alt="Conway Travel Collective" class="logo-img" />
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about">Our Approach</a></li>
+        <li><a href="index.html#story">Our Story</a></li>
+        <li><a href="index.html#press">Press</a></li>
+        <li><a href="atelier.html" class="nav-active">The Atelier</a></li>
+        <li><a href="index.html#contact">Commission</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn-nav-cta">Begin Your Journey</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <ul role="list">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about">Our Approach</a></li>
+        <li><a href="index.html#story">Our Story</a></li>
+        <li><a href="index.html#press">Press</a></li>
+        <li><a href="atelier.html">The Atelier</a></li>
+        <li><a href="index.html#contact" class="mobile-cta">Commission Your Journey</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="atelier-hero">
+    <div class="container">
+      <span class="atelier-eyebrow">Conway Travel Collective</span>
+      <h1 class="atelier-hero-title">The <em>Atelier</em></h1>
+      <p class="atelier-hero-lead">A perfectly crafted journey begins not with a destination, but with a conversation. Here are the people to call when you&rsquo;re ready to pen the story of your next great adventure.</p>
+      <div class="atelier-rule"></div>
+    </div>
+  </section>
+
+  <!-- ==================== TEAM GRID ==================== -->
+  <section class="atelier-section">
+    <div class="container">
+      <div class="atelier-grid">
+
+        <!-- Aidan Conway -->
+        <article class="team-card fade-in">
+          <div class="team-card-avatar">
+            <img src="images/aidan-conway.jpg" alt="Aidan Conway" style="width:100%;height:auto;display:block;" />
+          </div>
+          <div class="team-card-body">
+            <h2 class="team-card-name">Aidan Conway</h2>
+            <p class="team-card-title">Founder &amp; Lead Advisor</p>
+            <p class="team-card-bio">Before he ever booked a honeymoon or chartered a yacht, Aidan Conway spent years as a critical care nurse — navigating high-stakes environments where precision isn't a preference, it's the baseline. That discipline never left him. He simply transposed it onto a different kind of care.</p>
+            <p class="team-card-bio">Conway founded Conway Travel Collective on the belief that the most extraordinary travel experiences aren't discovered — they're designed. Each commission begins with the same question he asked in every clinical intake: <em>What does this person actually need?</em></p>
+            <p class="team-card-bio">His clientele are people who give their full attention to others all day. Conway gives his full attention back.</p>
+            <div class="team-card-specialties">
+              <span class="specialty-tag">Honeymoons</span>
+              <span class="specialty-tag">Safaris</span>
+              <span class="specialty-tag">Destination Weddings</span>
+              <span class="specialty-tag">Luxury Cruises</span>
+              <span class="specialty-tag">Private Aviation</span>
+              <span class="specialty-tag">Wellness Retreats</span>
+            </div>
+            <div class="team-card-social">
+              <a href="https://www.instagram.com/conway_travel_collective/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/aidancmconway" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="https://www.x.com/adventuresbyamc" target="_blank" rel="noopener" aria-label="X / Twitter">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.252 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="mailto:concierge@conwaytravelcollective.com" aria-label="Email">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PHILOSOPHY STRIP ==================== -->
+  <section class="atelier-philosophy">
+    <div class="container">
+      <p class="atelier-philosophy-quote">&ldquo;Travel is not just about where you go, but how the world changes you once you&rsquo;re there.&rdquo;</p>
+      <p class="atelier-philosophy-attr">Aidan Conway &middot; Founder, Conway Travel Collective</p>
+    </div>
+  </section>
+
+  <!-- ==================== JOIN CTA ==================== -->
+  <section class="atelier-join">
+    <div class="container">
+      <h2 class="atelier-join-title">Ready to <em>commission</em> your journey?</h2>
+      <p class="atelier-join-body">The Atelier is selective by design. Every client relationship begins with a conversation. Tell us where you want to go — and we'll tell you how to get there in a way you haven't imagined yet.</p>
+      <div class="atelier-join-actions">
+        <a href="index.html#contact" class="btn btn-primary">Start the Conversation</a>
+        <a href="index.html#services" class="btn btn-ghost">Explore Services &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo-icon-balloon.jpeg" alt="Conway Travel Collective" class="footer-logo" />
+        <p class="footer-tagline">&ldquo;Conway Travel Collective was born<br />to make the world your private collection.&rdquo;</p>
+        <p class="footer-location">Worldwide</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/conway_travel_collective/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/ConwayTravelCollective" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/conway-travel-collective" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.x.com/adventuresbyamc" target="_blank" rel="noopener" aria-label="X / Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.252 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="mailto:concierge@conwaytravelcollective.com" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul role="list">
+            <li><a href="index.html#about">Our Approach</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#story">Our Story</a></li>
+            <li><a href="index.html#press">Press</a></li>
+            <li><a href="atelier.html">The Atelier</a></li>
+            <li><a href="index.html#contact">Commission</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialties</h4>
+          <ul role="list">
+            <li><a href="index.html#contact">Honeymoons</a></li>
+            <li><a href="index.html#contact">Safari</a></li>
+            <li><a href="index.html#contact">Wellness Retreats</a></li>
+            <li><a href="index.html#contact">Destination Weddings</a></li>
+            <li><a href="index.html#contact">River Cruises</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul role="list">
+            <li><a href="https://www.instagram.com/conway_travel_collective/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/ConwayTravelCollective" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/company/conway-travel-collective" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.x.com/adventuresbyamc" target="_blank" rel="noopener">X / Twitter</a></li>
+            <li><a href="mailto:concierge@conwaytravelcollective.com">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Conway Travel Collective LLC &middot; Fla. Seller of Travel Reg. No. ST46413</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Atelier page — nav always starts light (no hero image)
+    document.getElementById('header').classList.remove('header--dark');
+  </script>
+</body>
+</html>
